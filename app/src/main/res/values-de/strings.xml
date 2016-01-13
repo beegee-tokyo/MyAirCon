@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="bt_txt_device_living">Wohnzimmer</string>
+	<string name="bt_txt_device_office">Büro</string>
+	<string name="bt_txt_icon">Symbol für die Aktionsleiste</string>
+	<string name="dialog_change_icon">Wähle ein Symbol aus</string>
+	<string name="dialog_change_title">Gebe einen Gerätenamen ein und wähle ein Symbol aus</string>
+	<string name="dialog_selector_title">Wähle ein Gerät aus</string>
+	<string name="err_esp">Verbindung zum ESP Gerät fehlgeschlagen. Prüfen Sie ob es eingeschalten ist und zum lokalen Netzwerk verbunden ist.</string>
+	<string name="err_no_esp">Kein ESP Gerät gefunden. Prüfen Sie ob es eingeschalten ist und zum lokalen Netzwerk verbunden ist.</string>
+	<string name="menu_set_location">Standorte</string>
+	<string name="txt_auto_status">Status</string>
+	<string name="txt_consumption">Verbrauch</string>
+	<string name="txt_cool_temp">Temperatur</string>
+	<string name="txt_refreshing">Erneuere Daten, bitte warten.</string>
+	<string name="txt_searching">Suche Geräte, bitte warten.</string>
+</resources>

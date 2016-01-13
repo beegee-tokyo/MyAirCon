@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+	<Button
+		android:id="@+id/dia_sel_device0"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:text="@string/bt_txt_device_living"/>
+
+	<Button
+		android:id="@+id/dia_sel_device1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:text="@string/bt_txt_device_living"
+		android:visibility="gone"/>
+
+	<Button
+		android:id="@+id/dia_sel_device2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:text="@string/bt_txt_device_living"
+		android:visibility="gone"/>
+
+	<Button
+		android:id="@+id/dia_sel_device3"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:text="@string/bt_txt_device_living"
+		android:visibility="gone"/>
+
+	<Button
+		android:id="@+id/dia_sel_device4"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:text="@string/bt_txt_device_living"
+		android:visibility="gone"/>
+
+	<Button
+		android:id="@+id/dia_sel_device5"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:text="@string/bt_txt_device_living"
+		android:visibility="gone"/>
+
+	<Button
+		android:id="@+id/dia_sel_device6"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:text="@string/bt_txt_device_living"
+		android:visibility="gone"/>
+
+	<Button
+		android:id="@+id/dia_sel_device7"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:text="@string/bt_txt_device_living"
+		android:visibility="gone"/>
+
+</LinearLayout>

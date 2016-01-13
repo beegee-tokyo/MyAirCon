@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="bt_txt_device_living">Salas</string>
+	<string name="bt_txt_device_office">Opisina</string>
+	<string name="bt_txt_icon">Icon para sa pagkilos bar</string>
+	<string name="dialog_change_icon">Pumili ng icon</string>
+	<string name="dialog_change_title">Ipasok ang pangalan ng lokasyon at piliin ang icon</string>
+	<string name="dialog_selector_title">Piliin aparato upang baguhin</string>
+	<string name="err_esp">Nabigo ang komunikasyon sa mga ESP. Tiyakin na ito ay nakabukas at ay konektado sa parehong WiFi network.</string>
+	<string name="err_no_esp">Walang ESP ay hindi nakita. Tiyakin na ito ay nakabukas at ay konektado sa parehong WiFi network.</string>
+	<string name="menu_set_location"> Lokasyon</string>
+	<string name="txt_auto_status">Katayuan</string>
+	<string name="txt_consumption">Paggamit</string>
+	<string name="txt_cool_temp">Temperatura</string>
+	<string name="txt_refreshing">Status Nire-refresh ang mga aparato, mangyaring maghintay</string>
+	<string name="txt_searching">Naghahanap ng mga aparato, mangyaring maghintay.</string>
+</resources>

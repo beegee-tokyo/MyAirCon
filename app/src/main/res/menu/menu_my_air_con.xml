@@ -1,0 +1,104 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="tk.giesecke.myaircon.myAirCon">
+
+	<item
+		android:id="@+id/device_0"
+		android:icon="@drawable/ic_office"
+		android:orderInCategory="100"
+		android:title="@string/bt_txt_device_office"
+		android:visible="false"
+		app:showAsAction="always"
+		tools:ignore="AlwaysShowAction"/>
+
+	<item
+		android:id="@+id/device_1"
+		android:icon="@drawable/ic_livingroom"
+		android:orderInCategory="100"
+		android:title="@string/bt_txt_device_living"
+		android:visible="false"
+		app:showAsAction="always"
+		tools:ignore="AlwaysShowAction"/>
+
+	<item
+		android:id="@+id/device_2"
+		android:icon="@drawable/ic_bedroom"
+		android:orderInCategory="100"
+		android:title="@string/bt_txt_device_office"
+		android:visible="false"
+		app:showAsAction="always"/>
+
+	<item
+		android:id="@+id/device_3"
+		android:icon="@drawable/ic_bedroom"
+		android:orderInCategory="100"
+		android:title="@string/bt_txt_device_living"
+		android:visible="false"
+		app:showAsAction="always"/>
+
+	<item
+		android:id="@+id/device_4"
+		android:icon="@drawable/ic_bedroom"
+		android:orderInCategory="100"
+		android:title="@string/bt_txt_device_office"
+		android:visible="false"
+		app:showAsAction="always"/>
+
+	<item
+		android:id="@+id/device_5"
+		android:icon="@drawable/ic_bedroom"
+		android:orderInCategory="100"
+		android:title="@string/bt_txt_device_living"
+		android:visible="false"
+		app:showAsAction="always"/>
+
+	<item
+		android:id="@+id/device_6"
+		android:icon="@drawable/ic_bedroom"
+		android:orderInCategory="100"
+		android:title="@string/bt_txt_device_office"
+		android:visible="false"
+		app:showAsAction="always"/>
+
+	<item
+		android:id="@+id/device_7"
+		android:icon="@drawable/ic_bedroom"
+		android:orderInCategory="100"
+		android:title="@string/bt_txt_device_living"
+		android:visible="false"
+		app:showAsAction="always"/>
+
+	<item
+		android:id="@+id/refresh"
+		android:icon="@drawable/ic_refresh"
+		android:orderInCategory="100"
+		android:title="@string/menu_refresh"
+		android:visible="true"
+		app:showAsAction="ifRoom"/>
+
+	<item
+		android:id="@+id/search"
+		android:icon="@drawable/ic_search"
+		android:orderInCategory="100"
+		android:title="@string/menu_search"
+		android:visible="true"
+		app:showAsAction="ifRoom"/>
+
+	<item
+		android:id="@+id/debug"
+		android:icon="@drawable/ic_debug"
+		android:orderInCategory="100"
+		android:title="@string/menu_debug_on"
+		android:visible="true"
+		app:showAsAction="never"/>
+
+	<item
+		android:id="@+id/locations"
+		android:icon="@drawable/ic_location"
+		android:orderInCategory="100"
+		android:title="@string/menu_set_location"
+		android:visible="true"
+		app:showAsAction="never"/>
+
+</menu>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+	<EditText
+		android:id="@+id/dia_et_location"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:inputType="text"
+		android:text="@string/bt_txt_device_living"
+		android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+	<TextView
+		android:id="@+id/dia_txt_icon"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:text="@string/dialog_change_icon"
+		android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/colorPrimaryDark"
+		android:orientation="horizontal">
+
+		<ImageButton
+			android:id="@+id/im_bath"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@color/colorPrimary"
+			android:contentDescription="@string/bt_txt_icon"
+			android:src="@drawable/ic_bathroom"/>
+
+		<ImageButton
+			android:id="@+id/im_bed"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@color/colorPrimary"
+			android:contentDescription="@string/bt_txt_icon"
+			android:src="@drawable/ic_bedroom"/>
+
+		<ImageButton
+			android:id="@+id/im_dining"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@color/colorPrimary"
+			android:contentDescription="@string/bt_txt_icon"
+			android:src="@drawable/ic_dining"/>
+
+		<ImageButton
+			android:id="@+id/im_entertain"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@color/colorPrimary"
+			android:contentDescription="@string/bt_txt_icon"
+			android:src="@drawable/ic_entertainment"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/colorPrimaryDark"
+		android:orientation="horizontal">
+
+		<ImageButton
+			android:id="@+id/im_kids"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@color/colorPrimary"
+			android:contentDescription="@string/bt_txt_icon"
+			android:src="@drawable/ic_kids"/>
+
+		<ImageButton
+			android:id="@+id/im_kitchen"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@color/colorPrimary"
+			android:contentDescription="@string/bt_txt_icon"
+			android:src="@drawable/ic_kitchen"/>
+
+		<ImageButton
+			android:id="@+id/im_living"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@color/colorPrimary"
+			android:contentDescription="@string/bt_txt_icon"
+			android:src="@drawable/ic_livingroom"/>
+
+		<ImageButton
+			android:id="@+id/im_office"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@color/colorPrimary"
+			android:contentDescription="@string/bt_txt_icon"
+			android:src="@drawable/ic_office"/>
+
+	</LinearLayout>
+
+</LinearLayout>

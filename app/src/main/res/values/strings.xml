@@ -1,0 +1,41 @@
+<resources>
+	<string name="app_name" translatable="false">MyAirCon</string>
+	<string name="bt_txt_device_office">Office</string>
+	<string name="bt_txt_device_living">Living</string>
+	<string name="bt_txt_power" translatable="false">POWER</string>
+	<string name="bt_txt_fan_bar" translatable="false">FAN</string>
+	<string name="bt_txt_fan_high" translatable="false">HIGH</string>
+	<string name="bt_txt_fan_med" translatable="false">MED</string>
+	<string name="bt_txt_fan_low" translatable="false">LOW</string>
+	<string name="bt_txt_mode_bar" translatable="false">MODE</string>
+	<string name="bt_txt_cool" translatable="false">COOL</string>
+	<string name="bt_txt_dry" translatable="false">DRY</string>
+	<string name="bt_txt_fan" translatable="false">FAN</string>
+	<string name="bt_txt_turbo" translatable="false">TURBO</string>
+	<string name="bt_txt_ion" translatable="false">ION</string>
+	<string name="bt_txt_auto" translatable="false">AUTO</string>
+	<string name="bt_txt_temp_bar" translatable="false">TEMP / TIMER</string>
+	<string name="bt_txt_plus" translatable="false">+</string>
+	<string name="bt_txt_minus" translatable="false">-</string>
+	<string name="bt_txt_sweep" translatable="false">SWEEP</string>
+	<string name="bt_txt_func_bar" translatable="false">FUNCTION</string>
+	<string name="bt_txt_fanspeed" translatable="false">FANSPEED</string>
+	<string name="txt_consumption">Consumption</string>
+	<string name="txt_cool_temp">Temperature</string>
+	<string name="txt_auto_status">Status</string>
+	<string name="txt_num" translatable="false">0</string>
+	<string name="err_no_esp">No ESP not found. Make sure it is switched on and is connected to the same WiFi network.</string>
+	<string name="err_esp">Communication with ESP failed. Make sure it is switched on and is connected to the same WiFi network.</string>
+	<string name="txt_searching">Searching devices, please wait.</string>
+	<string name="txt_refreshing">Refreshing devices status, please wait.</string>
+	<string name="menu_refresh" translatable="false">Refresh</string>
+	<string name="menu_search" translatable="false">Search</string>
+	<string name="menu_set_location">Locations</string>
+	<string name="menu_debug_on" translatable="false">Enable Debug</string>
+	<string name="menu_debug_off" translatable="false">Disable Debug</string>
+	<string name="txt_empty" translatable="false">  </string>
+	<string name="bt_txt_icon">Icon for Action bar</string>
+	<string name="dialog_change_title">Enter location name and choose icon </string>
+	<string name="dialog_change_icon">Select icon</string>
+	<string name="dialog_selector_title">Select device to change</string>
+</resources>
