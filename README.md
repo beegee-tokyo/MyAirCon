@@ -8,7 +8,7 @@ Main task for the SP8266 module is to automatically switch on the air con if eno
 Optional the air con can be controlled over WiFi by an Android phone or tablet<br />
 
 ## More details about the project:
--- TODO: add link to website / instructable<br />
+-- Link: http://www.instructables.com/id/ESP8266-WiFi-Controlled-Aircon-Remote/<br />
 ### ESP8266/Arduino part:
 #### Hardware:
 Adafruit HUZZAH ESP8266 (or similar ESP12 breakout) https://www.adafruit.com/products/2471<br />
