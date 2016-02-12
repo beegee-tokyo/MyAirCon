@@ -15,16 +15,30 @@
 	@version 0.1 beta December 2, 2015.
 */
 
+/** Build time */
+const char compileDate[] = __DATE__ " " __TIME__;
+
 /* Includes from libraties */
 #include <Ticker.h>
 #include <ESP8266WiFi.h>
+#include <WiFiUdp.h>
 #include <IRremoteESP8266.h>
 #include <IRremoteInt.h>
 #include <ArduinoJson.h>
 #include <WiFiClient.h>
 #include <ArduinoOTA.h>
+#include <FS.h>
 
-#define AC_ID "fd1" // ID for aircon FujiDenzo in office room
+/**********************************************
+When doing breadboard test, enable this define
+***********************************************/
+//#define BREADBOARD
+
+#ifdef BREADBOARD
+	#define DEVICE_ID "fdb" // ID for security in front yard
+#else
+	#define DEVICE_ID "fd1" // ID for security in front yard
+#endif
 
 /* wifiAPinfo.h contains wifi SSID and password */
 /* file content looks like: */
@@ -37,28 +51,33 @@
 /** WiFiClient class to create TCP communication */
 WiFiClient tcpClient;
 
+/** WiFiUDP class for creating UDP communication */
+WiFiUDP udpClientServer;
+
 /** WiFiServer class to create simple web server */
 WiFiServer server(80);
 
 /** IP address of this module */
-IPAddress ipAddr(192, 168, 0, 142);
+#ifdef BREADBOARD
+	IPAddress ipAddr(192, 168, 0, 149);
+#else
+	IPAddress ipAddr(192, 168, 0, 142);
+#endif
 /** IP address of first slave */
 IPAddress ipSlave1(192, 168, 0, 143);
 /** Gateway address of WiFi access point */
 IPAddress ipGateWay(192, 168, 0, 1);
 /** Network mask of the local lan */
 IPAddress ipSubNet(255, 255, 255, 0);
-/** IP address of this module */
+/** IP address of spMonitor module */
 IPAddress ipSPM(192, 168, 0, 140);
-
-/** Server address for OTA updates */
-const char* host = "ota";
+/** Network address mask for UDP multicast messaging */
+IPAddress multiIP (192,	168, 0, 255);
 
 /** Received command (from lan or serial connection) */
 int irCmd = 9999;
 /** String to hold incoming command from serial port */
 String inString = "";
-
 
 /** Definition of available commands */
 #define CMD_ON_OFF			00
@@ -82,6 +101,7 @@ String inString = "";
 #define CMD_OTHER_ION		43
 
 #define CMD_RESET			70
+#define CMD_INIT_AC		 	71
 
 #define CMD_REMOTE_0		80
 #define CMD_REMOTE_1		81
@@ -182,13 +202,22 @@ byte acTemp =		B00000000;
 #define IR_LED_OUT 13
 /** Blue LED on GPIO2 for communication activities */
 #define COM_LED 2
-/** Red LED on GPIO2 for aircon control activities */
+/** Red LED on GPIO0 for aircon control activities */
 #define ACT_LED 0
 
 /** Timer to contact spMonitor server to get current consumption */
 Ticker getPowerTimer;
+/** Timer to broadcast status & consumption every 10 minutes */
+Ticker sendUpdateTimer;
+/** Timer for flashing red detection LED */
+Ticker ledFlasher;
+
 /** Flag for request to contact spMonitor server to get current consumption */
 boolean powerUpdateTriggered = false;
+/** Flag for broadcast status & consumption */
+boolean sendUpdateTriggered = false;
+/** Flag for boot status */
+boolean inSetup = true;
 
 /** Instance of the IR sender */
 IRsend My_Sender(IR_LED_OUT);
@@ -208,6 +237,10 @@ IRsend My_Sender(IR_LED_OUT);
 byte powerStatus = 0;
 /** Power consumption of the house from spMonitor */
 double consPower = 0;
+/** Power consumption for decision to send a broadcast */
+double consPowerOld = 0;
+/** Solar panel production from spMonitor */
+double solarPower = 0;
 /** Collected power consumption of last 5 minutes of the house from spMonitor */
 double avgConsPower[10] = {0,0,0,0,0,0,0,0,0,0};
 /** Pointer to element in avgConsPower[] */
@@ -215,4 +248,7 @@ byte avgConsIndex = 0;
 
 /** Counter for "I am alive" red LED blinking in loop() */
 long liveCnt = 0;
+
+/** My GCM server contact address */
+const char* myServerName = "gcm.giesecke.tk"; //My GCM server contact address
 

@@ -31,60 +31,70 @@ void loop() {
 		}
 	}
 
-	if (irCmd == CMD_REMOTE_0) {
-		if ((acMode & AC_ON) == AC_ON) { // AC is on
-			irCmd = CMD_MODE_FAN;
-			sendCmd();
-			delay(1000);
-			irCmd = CMD_ON_OFF;
-			sendCmd();
-		}
-		irCmd = 9999;
-	}
-
-	if (irCmd == CMD_REMOTE_1) {
-		if ((acMode & AC_ON) != AC_ON) {
-			irCmd = CMD_ON_OFF;
-			sendCmd();
-			delay(1000);
-		}
-		irCmd = CMD_MODE_FAN;
-		sendCmd();
-		irCmd = 9999;
-	}
-	
-	if (irCmd == CMD_REMOTE_2) {
-		if ((acMode & AC_ON) != AC_ON) {
-			irCmd = CMD_ON_OFF;
-			sendCmd();
-			delay(1000);
-		}
-		irCmd = CMD_MODE_AUTO;
-		sendCmd();
-		irCmd = 9999;
-	}
-
-	if (irCmd == CMD_RESET) {
-		ESP.reset();
-	}
-
 	if (powerUpdateTriggered) {
 		//Serial.println("Power Update triggered");
 		powerUpdateTriggered = false;
 		getPowerVal(true);
 	}
 
-	if (irCmd != 9999) {
-		//Serial.println("Send command triggered");
-		sendCmd();
+	if (sendUpdateTriggered) {
+		//Serial.println("Send Update triggered");
+		sendUpdateTriggered = false;
+		sendBroadCast();
+	}
+
+
+	if (irCmd != 9999) { // Valid command received
+		switch (irCmd) {
+			case CMD_REMOTE_0: // Should only be received in slave AC
+				if ((acMode & AC_ON) == AC_ON) { // AC is on
+					irCmd = CMD_MODE_FAN;
+					sendCmd();
+					delay(1000);
+					irCmd = CMD_ON_OFF;
+					sendCmd();
+				}
+				irCmd = 9999;
+				break;
+			case CMD_REMOTE_1: // Should only be received in slave AC
+				if ((acMode & AC_ON) != AC_ON) {
+					irCmd = CMD_ON_OFF;
+					sendCmd();
+					delay(1000);
+				}
+				irCmd = CMD_MODE_FAN;
+				sendCmd();
+				irCmd = 9999;
+				break;
+			case CMD_REMOTE_2: // Should only be received in slave AC
+				if ((acMode & AC_ON) != AC_ON) {
+					irCmd = CMD_ON_OFF;
+					sendCmd();
+					delay(1000);
+				}
+				irCmd = CMD_MODE_AUTO;
+				sendCmd();
+				irCmd = 9999;
+				break;
+			case CMD_INIT_AC: // Initialize aircon
+				initAC();
+				irCmd = 9999;
+				break;
+			case CMD_RESET: // Reboot the ESP module
+				pinMode(16, OUTPUT); // Connected to RST pin
+				digitalWrite(16,LOW); // Initiate reset
+				ESP.reset(); // In case it didn't work
+				break;
+			default: // All other commands
+				//Serial.println("Send command triggered");
+				sendCmd();
+		}
 	}
 
 	// Give a "I am alive" signal
 	liveCnt++;
 	if (liveCnt == 100000) {
 		digitalWrite(ACT_LED, !digitalRead(ACT_LED));
-	}
-	if (liveCnt > 100000) {
 		liveCnt = 0;
 	}
 }

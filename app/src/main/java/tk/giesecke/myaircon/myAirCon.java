@@ -46,7 +46,7 @@ import java.util.concurrent.TimeUnit;
 public class myAirCon extends AppCompatActivity implements View.OnClickListener {
 
 	/** Flag for testing (show JSON responses) */
-	private boolean showDebugJSON = false;
+	public static boolean showDebugJSON = false;
 
 	/** A HTTP client to access the spMonitor device */
 	private static OkHttpClient client;
@@ -67,10 +67,10 @@ public class myAirCon extends AppCompatActivity implements View.OnClickListener 
 	private final String prefsSelDevice = "selDevice";
 
 	/** ID of the selected device */
-	private int selDevice = 0;
+	public static int selDevice = 0;
 	/** Max number of devices */
 	// TODO limit to 2 devices as I don't plan to have more but can be extended
-	private final int MAX_DEVICE = 2;
+	public static final int MAX_DEVICE = 2;
 	/** IP address of the selected device */
 	private final String[] espIP = {"192.168.0.142",
 			"192.168.0.143",
@@ -81,38 +81,40 @@ public class myAirCon extends AppCompatActivity implements View.OnClickListener 
 			"192.168.0.148",
 			"192.168.0.149"};
 	/** Name of the device */
-	private final String[] deviceName = {"", "", "", "", "", "", "", ""};
+	public static final String[] deviceName = {"", "", "", "", "", "", "", ""};
 	/** Layout version for the device */
-	private final int[] deviceType = {99, 99, 99, 99, 99, 99, 99, 99};
+	public static final int[] deviceType = {99, 99, 99, 99, 99, 99, 99, 99};
 	/** Valid device type ids */
-	private static final int FUJIDENZO = 0;
-	private static final int CARRIER = 1;
+	public static final int FUJIDENZO = 0;
+	public static final int CARRIER = 1;
 	/** Location of the device */
 	private final String[] locationName = {"Office", "Living", "", "", "", "", "", ""};
 	/** Icon for the device */
 	private final int[] deviceIcon = {7, 6, 0, 0, 0, 0, 0, 0};
 	/** Power status of device */
-	private final int[] powerStatus = {0, 0, 0, 0, 0, 0, 0, 0};
+	public static final int[] powerStatus = {0, 0, 0, 0, 0, 0, 0, 0};
 	/** Mode status of device */
-	private final int[] modeStatus = {0, 0, 0, 0, 0, 0, 0, 0};
+	public static final int[] modeStatus = {0, 0, 0, 0, 0, 0, 0, 0};
 	/** Fan speed of device */
-	private final int[] fanStatus = {0, 0, 0, 0, 0, 0, 0, 0};
+	public static final int[] fanStatus = {0, 0, 0, 0, 0, 0, 0, 0};
 	/** Cooling temperature of device */
-	private final int[] coolStatus = {0, 0, 0, 0, 0, 0, 0, 0};
+	public static final int[] coolStatus = {0, 0, 0, 0, 0, 0, 0, 0};
 	/** Consumption status of device (only from master device */
-	private double consStatus = 0;
+	public static double consStatus = 0;
 	/** Auto power status of device (only from master device */
-	private int autoStatus = 0;
+	public static int autoStatus = 0;
 	/** Auto power enabled status of device */
-	private final int[] autoOnStatus = {0, 0, 0, 0, 0, 0, 0, 0};
+	public static final int[] autoOnStatus = {0, 0, 0, 0, 0, 0, 0, 0};
 	/** Sweep enabled status of device */
-	private final int[] sweepStatus = {0, 0, 0, 0, 0, 0, 0, 0};
+	public static final int[] sweepStatus = {0, 0, 0, 0, 0, 0, 0, 0};
 	/** Turbo enabled status of device */
-	private final int[] turboStatus = {0, 0, 0, 0, 0, 0, 0, 0};
+	public static final int[] turboStatus = {0, 0, 0, 0, 0, 0, 0, 0};
 	/** Ion enabled status of device */
-	private final int[] ionStatus = {0, 0, 0, 0, 0, 0, 0, 0};
+	public static final int[] ionStatus = {0, 0, 0, 0, 0, 0, 0, 0};
 	/** Status of device 0=in search, 1=found, 2=not found */
-	private final int[] deviceStatus = {0, 0, 0, 0, 0, 0, 0, 0};
+	public static final int[] deviceStatus = {0, 0, 0, 0, 0, 0, 0, 0};
+	/** SW build date of device */
+	public static final String[] deviceBuild = {"", "", "", "", "", "", "", ""};
 
 	private static final String CMD_ON_OFF = "00";
 
@@ -140,76 +142,76 @@ public class myAirCon extends AppCompatActivity implements View.OnClickListener 
 	private static final String CMD_AUTO_OFF = "99";
 
 	/** Light of button to switch consumption control for FujiDenzo layout */
-	private View btAutoLightFD;
+	private static View btAutoLightFD;
 	/** Light of button to switch consumption control for Carrier layout */
-	private View btAutoLightCA;
+	private static View btAutoLightCA;
 	/** Light of button to switch on/off for FujiDenzo layout */
-	private View btOnOffLightFD;
+	private static View btOnOffLightFD;
 	/** Light of button to switch on/off for Carrier layout */
-	private View btOnOffLightCA;
+	private static View btOnOffLightCA;
 	/** Light of button to switch fan to high speed for FujiDenzo layout */
-	private View btFanHighLightFD;
+	private static View btFanHighLightFD;
 	/** Light of button to switch fan to medium speed for FujiDenzo layout */
-	private View btFanMedLightFD;
+	private static View btFanMedLightFD;
 	/** Light of button to switch fan to low speed for FujiDenzo layout */
-	private View btFanLowLightFD;
+	private static View btFanLowLightFD;
 	/** Light of button to switch to cool mode for FujiDenzo layout */
-	private View btCoolLightFD;
+	private static View btCoolLightFD;
 	/** Light of button to switch to cool mode for Carrier layout */
-	private View btCoolLightCA;
+	private static View btCoolLightCA;
 	/** Light of button to switch to dry mode for FujiDenzo layout */
-	private View btDryLightFD;
+	private static View btDryLightFD;
 	/** Light of button to switch to dry mode for Carrier layout */
-	private View btDryLightCA;
+	private static View btDryLightCA;
 	/** Light of button to switch to fan mode for FujiDenzo layout */
-	private View btFanLightFD;
+	private static View btFanLightFD;
 	/** Light of button to switch to fan mode for Carrier layout */
-	private View btFanLightCA;
+	private static View btFanLightCA;
 	/** Light of button to switch on sweep for Carrier layout */
-	private View btSweepLightCA;
+	private static View btSweepLightCA;
 	/** Light of button to switch on turbo mode for Carrier layout */
-	private View btTurboLightCA;
+	private static View btTurboLightCA;
 	/** Light of button to switch on ion mode for Carrier layout */
-	private View btIonLightCA;
+	private static View btIonLightCA;
 	/** Light of button to switch on auto temp function for Carrier layout */
-	private View btAutomLightCA;
+	private static View btAutomLightCA;
 	/** Light of button to switch to timer function for FujiDenzo layout */
 	/* Timer function is not supported atm
-	View btTimerLightFD;
+	View static btTimerLightFD;
 	*/
 	/** Light of button to switch to timer function for Carrier layout */
 	/* Timer function is not supported atm
-	View btTimerLightCA;
+	View static btTimerLightCA;
 	*/
 	/** Button to switch fan speed for Carrier layout */
-	private Button btFanCA;
+	private static Button btFanCA;
 	/** Consumption value display for FujiDenzo layout */
-	private TextView txtConsValFD;
+	private static TextView txtConsValFD;
 	/** Temperature value display for FujiDenzo layout */
-	private TextView txtTempValFD;
+	private static TextView txtTempValFD;
 	/** Status value display for FujiDenzo layout */
-	private TextView txtAutoStatusValFD;
+	private static TextView txtAutoStatusValFD;
 	/** Consumption value display for Carrier layout */
-	private TextView txtConsValCA;
+	private static TextView txtConsValCA;
 	/** Temperature value display for Carrier layout */
-	private TextView txtTempValCA;
+	private static TextView txtTempValCA;
 	/** Status value display for Carrier layout */
-	private TextView txtAutoStatusValCA;
+	private static TextView txtAutoStatusValCA;
 	/** Text field for debug messages */
-	private TextView debugTxt;
+	public static TextView debugTxt;
 	/** Array with the ids of the menu items */
-	private final MenuItem[] menuContent = {null, null, null, null, null, null, null, null};
+	private static final MenuItem[] menuContent = {null, null, null, null, null, null, null, null};
 	/** Relative layout when no ESP devices were found */
-	private RelativeLayout noDeviceLayout;
+	private static RelativeLayout noDeviceLayout;
 	/** Relative layout for FujiDenzo aircon */
-	private RelativeLayout fdLayout;
+	private static RelativeLayout fdLayout;
 	/** Relative layout for Carrier aircon */
-	private RelativeLayout caLayout;
+	private static RelativeLayout caLayout;
 
 	/** Color for activated button */
-	private int colorRed;
+	private static int colorRed;
 	/** Color for deactivated button */
-	private int colorGrey;
+	private static int colorGrey;
 
 	/** Id of menu, needed to set user selected icons and device names */
 	private Menu abMenu;
@@ -1006,6 +1008,9 @@ public class myAirCon extends AppCompatActivity implements View.OnClickListener 
 					if (deviceResult.has("ion")) {
 						ionStatus[result.deviceIndex] = deviceResult.getInt("ion");
 					}
+					if (deviceResult.has("build")) {
+						deviceBuild[result.deviceIndex] = deviceResult.getString("build");
+					}
 					// TODO here is the place to add more status for other air cons
 
 					// Update UI
@@ -1029,7 +1034,7 @@ public class myAirCon extends AppCompatActivity implements View.OnClickListener 
 	 * @param deviceIndex
 	 *            Index of the device to be updated
 	 */
-	private void updateUI(int deviceIndex) {
+	public static void updateUI(int deviceIndex) {
 		String consText = String.format("%.0f", consStatus) + "W";
 		String tempText = Integer.toString(coolStatus[deviceIndex]) + "C";
 		String statusText = Integer.toString(autoStatus);
